@@ -20,19 +20,18 @@ one") lands without explaining itself. 147 characters.
 import os
 
 PLACARD = (
-    "Shrine of the Shared Lunch, c. 2020. Steel, glass, other people's "
-    "fish. Heated offerings in ninety seconds; forgave no one. Loan of "
-    "the Break Room."
+    "Shrine of the Shared Lunch, c. 2020. Steel, glass, other people's fish. "
+    "Heated offerings in ninety seconds; forgave no one. Loan of the Break Room."
 )
 
 
 def main() -> None:
-    text = PLACARD.strip()
+    text = " ".join(PLACARD.split())
     assert 1 <= len(text) <= 180, f"placard must be 1-180 chars, got {len(text)}"
-    assert text == text.strip() and "\n" not in text, "placard must be one clean line"
+    assert "\n" not in text, "placard must be one clean line"
     os.makedirs("/output", exist_ok=True)
-    with open("/output/entry.txt", "w", encoding="utf-8") as f:
-        f.write(text)
+    with open("/output/entry.txt", "w", encoding="utf-8") as out:
+        out.write(text)
 
 
 if __name__ == "__main__":
